@@ -1,0 +1,45 @@
+syntax = "proto3";
+option go_package = "./";
+
+service Accounts {
+  rpc GetAccountName (GetAccountNameRequest) returns (GetAccountNameResponse) {}
+  rpc AddUploadHistory (AddUploadHistoryRequest) returns (AddUploadHistoryResponse) {}
+  rpc EditUploadHistory (EditUploadHistoryRequest) returns (EditUploadHistoryResponse) {}
+  rpc DeleteUploadHistory (DeleteUploadHistoryRequest) returns (DeleteUploadHistoryResponse) {}
+}
+
+enum Status {
+    SUCCESS = 0;
+    FAILED = 1;
+}
+
+message GetAccountNameRequest {
+  int32 accountID = 1;
+}
+message GetAccountNameResponse {
+  Status code = 1;
+  string name = 2;
+}
+
+message AddUploadHistoryRequest {
+  int32 accountID = 1;
+}
+message AddUploadHistoryResponse {
+  Status code = 1;
+  int32 historyID = 2;
+}
+
+message EditUploadHistoryRequest {
+  int32 historyID = 1;
+  int32 historyStatus = 2;
+}
+message EditUploadHistoryResponse {
+  Status code = 1;
+}
+
+message DeleteUploadHistoryRequest {
+  int32 historyID = 1;
+}
+message DeleteUploadHistoryResponse {
+  Status code = 1;
+}
